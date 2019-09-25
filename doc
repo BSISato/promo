@@ -1,0 +1,17 @@
+npm install -g yarn
+yarn init
+yarn add nodemon --dev
+-- criar server.js
+yarn add babel-cli --dev
+yarn add babel-preset-node8 --dev
+-- criar start.js
+-- alterar package.json
+   "main": "server.js",
+   "scripts": {
+    "dev": "nodemon"
+   },
+
+yarn add mysql2
+yarn add express body-parser
+yarn add sequelize express
+yarn add -D sequelize-cli
