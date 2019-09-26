@@ -7,7 +7,8 @@ exports.create = async (req, res) => {
         await repository.create({
             descricao : req.body.descricao,
             qtde: req.body.qtde,
-            idSegmento: req.body.idSegmento
+            idSegmento: req.body.idSegmento,
+            idEmpresa: req.body.idEmpresa
         });
         res.status(201).send({
             message: "Produto cadastrado com sucesso"

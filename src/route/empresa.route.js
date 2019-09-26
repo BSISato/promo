@@ -5,7 +5,5 @@ module.exports = function (app) {
     // Cadastro EMPRESA
     app.post('/api/empresa', empresa.create);
 
-    
-
 
 }

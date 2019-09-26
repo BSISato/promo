@@ -25,6 +25,7 @@ require('./src/route/empresa.route')(app);
 require('./src/route/usuario.route')(app);
 require('./src/route/segmento.route')(app);
 require('./src/route/produto.route')(app);
+require('./src/route/promocao.route')(app);
 
  
 // Create a Server

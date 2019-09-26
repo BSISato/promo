@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
     `createdAt` DATETIME NOT NULL, 
     `updatedAt` DATETIME NOT NULL, 
     PRIMARY KEY (`idUsuario`),
-    CONSTRAINT fk_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
+    CONSTRAINT fk_usuario_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
     ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `segmento` (
@@ -42,7 +42,22 @@ CREATE TABLE IF NOT EXISTS `produto` (
     `descricao` VARCHAR(255), 
     `qtde` INTEGER, 
     `idSegmento` INTEGER, 
+    `idEmpresa` INTEGER, 
     `createdAt` DATETIME NOT NULL, 
     `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`idProduto`),
-    CONSTRAINT fk_segmento FOREIGN KEY (idSegmento) REFERENCES segmento (idSegmento)
+    CONSTRAINT fk_produto_segmento FOREIGN KEY (idSegmento) REFERENCES segmento (idSegmento),
+    CONSTRAINT fk_produto_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
+    ) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `promocao` (
+    `idPromocao` INTEGER NOT NULL auto_increment , 
+    `valor` FLOAT, 
+    `validade` DATETIME, 
+    `idProduto` INTEGER,
+    `utilizado` VARCHAR(255),
+    `createdAt` DATETIME NOT NULL, 
+    `updatedAt` DATETIME NOT NULL, 
+    PRIMARY KEY (`idPromocao`),
+    CONSTRAINT fk_promocao_produto FOREIGN KEY (idProduto) REFERENCES produto (idProduto),
+    CONSTRAINT fk_promocao_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
     ) ENGINE=InnoDB;

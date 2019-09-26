@@ -1,26 +1,29 @@
 module.exports = (sequelize, Sequelize) => {
-    const Produto = sequelize.define('produto', {
-        idProduto: {
+    const Promocao = sequelize.define('promocao', {
+        idPromocao: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
         },
-        descricao: {
-            type: Sequelize.STRING
+        valor: {
+            type: Sequelize.FLOAT
         },
-        qtde: {
-            type: Sequelize.INTEGER
+        validade: {
+            type: Sequelize.DATE
         },
-        idSegmento: {
+        idProduto: {
             type: Sequelize.INTEGER
         },
         idEmpresa: {
             type: Sequelize.INTEGER
+        },
+        utilizado: {
+            type: Sequelize.ENUM('S','N')
         }
     },{
         freezeTableName: true //cria a tabela no singular
     });
 
-    return Produto;
+    return Promocao;
 }
