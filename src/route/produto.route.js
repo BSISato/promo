@@ -1,9 +1,15 @@
 module.exports = function (app) {
 
-    const produto = require('../controller/produto.controller');
+    const controller = require('../controller/produto.controller');
 
-    // Cadastro EMPRESA
-    app.post('/api/produto', produto.create);
+    // Cadastro Produto
+    app.post('/api/produto', controller.create);
+    //Get ID
+    app.get('/api/produto/:produtoid',controller.getById);
+    //Get All
+    app.get('/api/produto',controller.getAll);
+    //Delete
+    app.delete('/api/produto/delete/:delid',controller.delete);
 
     
 

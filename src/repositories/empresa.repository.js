@@ -9,7 +9,6 @@ exports.create = async (dados) => {
 }
 //Get By ID
 exports.getById = async (id) => {
-    console.log(id);
     const res = await Empresa.findByPk(id);
     return res;
 }
