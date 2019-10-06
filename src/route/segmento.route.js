@@ -8,6 +8,8 @@ module.exports = function (app) {
     app.get('/api/segmento/:segmentoid',controller.getById);
     //Get All
     app.get('/api/segmento',controller.getAll);
+    //Put
+    app.put('/api/segmento/altera/:altid',controller.put);
     //Delete
     app.delete('/api/segmento/delete/:delid',controller.delete);
 

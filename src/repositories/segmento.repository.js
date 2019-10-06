@@ -17,6 +17,15 @@ exports.getAll = async () => {
     const res = await Segmento.findAll();
     return res;
 }
+//PUT
+exports.put = async (id, data) => {
+
+    await Segmento.update({
+        descricao : data.descricao
+    }, {
+        where: { idSegmento: id }
+    });
+}
 //Delete
 exports.delete = async (id) => {
     await Segmento.destroy({

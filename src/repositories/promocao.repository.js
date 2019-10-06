@@ -4,7 +4,7 @@ const Promocao = db.promocao;
 
 // Post Empresa
 exports.create = async (dados) => {
-
+console.log(dados);
     Promocao.create(dados)
 }
 //Get By ID
@@ -16,6 +16,21 @@ exports.getById = async (id) => {
 exports.getAll = async () => {
     const res = await Promocao.findAll();
     return res;
+}
+//PUT
+exports.put = async (id, data) => {
+
+    await Promocao.update({
+        segmento: data.segmento,
+            descricao : data.descricao,
+            qtde : data.qtde,
+            valorReal : data.valorReal,
+            valorPromocao : data.valorPromocao,
+            validade: data.validade,
+            idEmpresa: data.idEmpresa
+    }, {
+        where: { idPromocao: id }
+    });
 }
 //Delete
 exports.delete = async (id) => {

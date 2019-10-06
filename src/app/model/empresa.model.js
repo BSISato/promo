@@ -15,6 +15,9 @@ module.exports = (sequelize, Sequelize) => {
         cnpj : {
             type: Sequelize.STRING
         },
+        segmento : {
+            type: Sequelize.STRING
+        },
         responsavel: {
             type: Sequelize.STRING
         }

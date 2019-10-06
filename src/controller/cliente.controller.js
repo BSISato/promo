@@ -1,41 +1,42 @@
 
-var repository = require('../repositories/promocao.repository');
+var repository = require('../repositories/cliente.repository');
 
-//Post Promocao
+//Post Cliente
 exports.create = async (req, res) => {
     try {
         await repository.create({
-            segmento: req.body.segmento,
-            descricao : req.body.descricao,
-            qtde : req.body.qtde,
-            valorReal : req.body.valorReal,
-            valorPromocao : req.body.valorPromocao,
-            validade: req.body.validade,
+            nome : req.body.nome,
+            telefone: req.body.telefone,
+            email: req.body.email,
+            senha: req.body.senha,
+            segmento1: req.body.segmento1,
+            segmento2: req.body.segmento2,
+            segmento3: req.body.segmento3,
             idEmpresa: req.body.idEmpresa
         });
         res.status(201).send({
-            message: "Promoção cadastrada com sucesso"
+            message: "Cliente cadastrado com sucesso"
         });
     }catch(e) {
         console.log(e);
         res.status(500).send({
-            message:"Falha ao cadastrar promoção"
+            message:"Falha ao cadastrar Cliente"
         })
     }
 }
 //Get ById
 exports.getById = async (req, res) => {
-    var id = req.params.promocaoid;
+    var id = req.params.clienteid;
 
     try {
         var data = await repository.getById(id);
         if (!data) {
             res.status(200).send({
-                message: "Promoção inexistente",
+                message: "Cliente inexistente",
             });
         }else{
             res.status(200).send({
-                message: "Promoção",
+                message: "Cliente",
                 data
             });
         }
@@ -51,7 +52,7 @@ exports.getAll = async (req, res) => {
     try {
         var data = await repository.getAll();
         res.status(200).send({
-            message: "promoções:",
+            message: "clientes:",
             data
         });
     } catch (error) {
@@ -67,7 +68,7 @@ exports.put = async (req, res) => {
         const id = req.params.altid;
         var data = await repository.put(id, req.body);
         res.status(200).send({
-            message: "Promoção atualizada com sucesso",
+            message: "Cliente atualizado com sucesso",
             dados: data
         });
     } catch (error) {
@@ -82,7 +83,7 @@ exports.delete = async (req, res) => {
         const id = req.params.delid;
         await repository.delete(id);
         res.status(200).send({
-            message: "promoção removida"
+            message: "cliente removido"
         });
     } catch (error) {
         res.status(500).send({

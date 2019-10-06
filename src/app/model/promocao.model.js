@@ -6,21 +6,27 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             type: Sequelize.INTEGER
         },
-        valor: {
+        segmento: {
+            type: Sequelize.STRING
+        },
+        descricao: {
+            type: Sequelize.STRING
+        },
+        qtde: {
+            type: Sequelize.INTEGER
+        },
+        valorReal: {
+            type: Sequelize.FLOAT
+        },
+        valorPromocao: {
             type: Sequelize.FLOAT
         },
         validade: {
             type: Sequelize.DATE
         },
-        idProduto: {
-            type: Sequelize.INTEGER
-        },
         idEmpresa: {
             type: Sequelize.INTEGER
         },
-        utilizado: {
-            type: Sequelize.ENUM('S','N')
-        }
     },{
         freezeTableName: true //cria a tabela no singular
     });

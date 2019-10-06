@@ -8,6 +8,8 @@ module.exports = function (app) {
     app.get('/api/usuario/:usuarioid',controller.getById);
     //Get All
     app.get('/api/usuario',controller.getAll);
+    //Put
+    app.put('/api/usuario/altera/:altid',controller.put);
     //Delete
     app.delete('/api/usuario/delete/:delid',controller.delete);
 

@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-    const Usuario = sequelize.define('usuario', {
-        idUsuario: {
+    const Cliente = sequelize.define('cliente', {
+        idCliente: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
@@ -9,13 +9,22 @@ module.exports = (sequelize, Sequelize) => {
         nome: {
             type: Sequelize.STRING
         },
+        telefone: {
+            type: Sequelize.INTEGER
+        },
         email: {
             type: Sequelize.STRING
         },
         senha: {
             type: Sequelize.STRING
         },
-        nivel : {
+        segmento1 : {
+            type: Sequelize.STRING
+        },
+        segmento2 : {
+            type: Sequelize.STRING
+        },
+        segmento3 : {
             type: Sequelize.STRING
         },
         idEmpresa: {
@@ -25,5 +34,5 @@ module.exports = (sequelize, Sequelize) => {
         freezeTableName: true //cria a tabela no singular
     });
 
-    return Usuario;
+    return Cliente;
 }

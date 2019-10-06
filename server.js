@@ -24,8 +24,8 @@ db.sequelize.sync({force: true}).then(() => {
 require('./src/route/empresa.route')(app);
 require('./src/route/usuario.route')(app);
 require('./src/route/segmento.route')(app);
-require('./src/route/produto.route')(app);
 require('./src/route/promocao.route')(app);
+require('./src/route/cliente.route')(app);
 
  
 // Create a Server

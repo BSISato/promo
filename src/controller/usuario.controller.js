@@ -6,6 +6,7 @@ exports.create = async (req, res) => {
     try {
         await repository.create({
             nome : req.body.nome,
+            email: req.body.email,
             senha: req.body.senha,
             nivel: req.body.nivel,
             idEmpresa: req.body.idEmpresa
@@ -26,10 +27,16 @@ exports.getById = async (req, res) => {
 
     try {
         var data = await repository.getById(id);
-        res.status(200).send({
-            message: "usuario: ",
-            data
-        });
+        if (!data) {
+            res.status(200).send({
+                message: "Usuário inexistente",
+            });
+        }else{
+            res.status(200).send({
+                message: "Usuário",
+                data
+            });
+        }
     } catch (error) {
         res.status(500).send({
             message: "Falha na requisição",
@@ -50,6 +57,22 @@ exports.getAll = async (req, res) => {
             message: "Falha na requisição",
             erro: error
         })
+    }
+}
+//Put
+exports.put = async (req, res) => {
+    try{
+        const id = req.params.altid;
+        var data = await repository.put(id, req.body);
+        res.status(200).send({
+            message: "Usuário atualizado com sucesso",
+            dados: data
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha da requisição de alteração",
+            erro: error
+        });
     }
 }
 exports.delete = async (req, res) => {

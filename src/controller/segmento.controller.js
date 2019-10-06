@@ -24,10 +24,16 @@ exports.getById = async (req, res) => {
 
     try {
         var data = await repository.getById(id);
-        res.status(200).send({
-            message: "segmento: ",
-            data
-        });
+        if (!data) {
+            res.status(200).send({
+                message: "Segmento inexistente",
+            });
+        }else{
+            res.status(200).send({
+                message: "Segmento",
+                data
+            });
+        }
     } catch (error) {
         res.status(500).send({
             message: "Falha na requisição",
@@ -48,6 +54,22 @@ exports.getAll = async (req, res) => {
             message: "Falha na requisição",
             erro: error
         })
+    }
+}
+//Put
+exports.put = async (req, res) => {
+    try{
+        const id = req.params.altid;
+        var data = await repository.put(id, req.body);
+        res.status(200).send({
+            message: "Segmento atualizado com sucesso",
+            dados: data
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha da requisição de alteração",
+            erro: error
+        });
     }
 }
 exports.delete = async (req, res) => {

@@ -2,7 +2,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
     `idEmpresa` INTEGER NOT NULL auto_increment , 
     `razaoSocial` VARCHAR(255), 
     `nomeFantasia` VARCHAR(255), 
-    `cnpj` VARCHAR(255), 
+    `cnpj` VARCHAR(255),
+    `responsavel` VARCHAR(255), 
     `responsavel` VARCHAR(255), 
     `createdAt` DATETIME NOT NULL, 
     `updatedAt` DATETIME NOT NULL, 
@@ -11,7 +12,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 
 CREATE TABLE IF NOT EXISTS `usuario` (
     `idUsuario` INTEGER NOT NULL auto_increment , 
-    `nome` VARCHAR(255), 
+    `nome` VARCHAR(255),
+    `email` VARCHAR(255), 
     `senha` VARCHAR(255), 
     `nivel` VARCHAR(255), 
     `idEmpresa` INTEGER,
@@ -19,6 +21,37 @@ CREATE TABLE IF NOT EXISTS `usuario` (
     `updatedAt` DATETIME NOT NULL, 
     PRIMARY KEY (`idUsuario`),
     CONSTRAINT fk_usuario_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
+    ) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `promocao` (
+    `idPromocao` INTEGER NOT NULL auto_increment , 
+    `segmento` VARCHAR(255),
+    `descricao` VARCHAR(255), 
+    `qtde` INTEGER, 
+    `valorReal` FLOAT, 
+    `valorPromocao` FLOAT,
+    `validade` DATETIME, 
+    `idEmpresa` INTEGER,
+    `createdAt` DATETIME NOT NULL, 
+    `updatedAt` DATETIME NOT NULL, 
+    PRIMARY KEY (`idPromocao`),
+    CONSTRAINT fk_promocao_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
+    ) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+    `idCliente` INTEGER NOT NULL auto_increment , 
+    `nome` VARCHAR(255),
+    `telefone` VARCHAR(255),
+    `email` VARCHAR(255), 
+    `senha` VARCHAR(255),
+    `segmento1` VARCHAR(255),
+    `segmento2` VARCHAR(255),
+    `segmento3` VARCHAR(255),  
+    `idEmpresa` INTEGER,
+    `createdAt` DATETIME NOT NULL, 
+    `updatedAt` DATETIME NOT NULL, 
+    PRIMARY KEY (`idUsuario`),
+    CONSTRAINT fk_cliente_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
     ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `segmento` (
@@ -29,35 +62,23 @@ CREATE TABLE IF NOT EXISTS `segmento` (
     PRIMARY KEY (`idSegmento`)
     ) ENGINE=InnoDB;
 
+verificar
+CREATE TABLE IF NOT EXISTS `clienteEmpresa` (
+    `idEmpresa` INTEGER NOT NULL,
+    `idCliente` INTEGER NOT NULL,  
+    `createdAt` DATETIME NOT NULL, 
+    `updatedAt` DATETIME NOT NULL, 
+    PRIMARY KEY (`idEmpresa`,`idSegmento`)
+    ) ENGINE=InnoDB;
+
+
+Abaixo iremos verificar ainda
+
+
 CREATE TABLE IF NOT EXISTS `empresaSegmento` (
     `idEmpresa` INTEGER NOT NULL,
     `idSegmento` INTEGER NOT NULL,  
     `createdAt` DATETIME NOT NULL, 
     `updatedAt` DATETIME NOT NULL, 
     PRIMARY KEY (`idEmpresa`,`idSegmento`)
-    ) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS `produto` (
-    `idProduto` INTEGER NOT NULL auto_increment , 
-    `descricao` VARCHAR(255), 
-    `qtde` INTEGER, 
-    `idSegmento` INTEGER, 
-    `idEmpresa` INTEGER, 
-    `createdAt` DATETIME NOT NULL, 
-    `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`idProduto`),
-    CONSTRAINT fk_produto_segmento FOREIGN KEY (idSegmento) REFERENCES segmento (idSegmento),
-    CONSTRAINT fk_produto_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
-    ) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS `promocao` (
-    `idPromocao` INTEGER NOT NULL auto_increment , 
-    `valor` FLOAT, 
-    `validade` DATETIME, 
-    `idProduto` INTEGER,
-    `utilizado` VARCHAR(255),
-    `createdAt` DATETIME NOT NULL, 
-    `updatedAt` DATETIME NOT NULL, 
-    PRIMARY KEY (`idPromocao`),
-    CONSTRAINT fk_promocao_produto FOREIGN KEY (idProduto) REFERENCES produto (idProduto),
-    CONSTRAINT fk_promocao_empresa FOREIGN KEY (idEmpresa) REFERENCES empresa (idEmpresa)
     ) ENGINE=InnoDB;
