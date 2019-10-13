@@ -1,43 +1,43 @@
 const db = require('../config/db.config');
-const Promocao = db.promocao;
+const Cupom = db.cupom;
 
 
 // Post Empresa
 exports.create = async (dados) => {
 console.log(dados);
-    Promocao.create(dados)
+    Cupom.create(dados)
 }
 //Get By ID
 exports.getById = async (id) => {
-    const res = await Promocao.findByPk(id);
+    const res = await Cupom.findByPk(id);
     return res;
 }
 //Get All
 exports.getAll = async () => {
-    const res = await Promocao.findAll();
+    const res = await Cupom.findAll();
     return res;
 }
 //PUT
 exports.put = async (id, data) => {
 
-    await Promocao.update({
+    await Cupom.update({
         segmento: data.segmento,
-            descricao : data.descricao,
+            codigoCupom : data.codigoCupom,
             qtde : data.qtde,
-            valorReal : data.valorReal,
-            valorPromocao : data.valorPromocao,
-            validade: data.validade,
+            data : data.data,
+            utilizado : data.utilziado,
             idEmpresa: data.idEmpresa,
-            situacao : data.situacao
+            idCliente: data.idCliente,
+            idPromocao: data.idPromocao
     }, {
-        where: { idPromocao: id }
+        where: { idCupom: id }
     });
 }
 //Delete
 exports.delete = async (id) => {
     await Promocao.destroy({
         where:{
-            idPromocao:id
+            idCupom:id
         }
     })
 }

@@ -1,21 +1,20 @@
 
-var repository = require('../repositories/promocao.repository');
+var repository = require('../repositories/cupom.repository');
 
-//Post Promocao
+//Post Cupom
 exports.create = async (req, res) => {
     try {
         await repository.create({
-            segmento: req.body.segmento,
-            descricao : req.body.descricao,
+            codigoCupom: req.body.codigoCupom,
             qtde : req.body.qtde,
-            valorReal : req.body.valorReal,
-            valorPromocao : req.body.valorPromocao,
-            validade: req.body.validade,
+            data : req.body.data,
+            utilizado : req.body.utilizado,
             idEmpresa: req.body.idEmpresa,
-            situacao : req.body.situacao
+            idCliente: req.body.idCliente,
+            idPromocao: req.body.idPromocao
         });
         res.status(201).send({
-            message: "Promoção cadastrada com sucesso"
+            message: "Cupom cadastrado com sucesso"
         });
     }catch(e) {
         console.log(e);
@@ -26,17 +25,17 @@ exports.create = async (req, res) => {
 }
 //Get ById
 exports.getById = async (req, res) => {
-    var id = req.params.promocaoid;
+    var id = req.params.cupomid;
 
     try {
         var data = await repository.getById(id);
         if (!data) {
             res.status(200).send({
-                message: "Promoção inexistente",
+                message: "Cupom inexistente",
             });
         }else{
             res.status(200).send({
-                message: "Promoção",
+                message: "Cupom",
                 data
             });
         }
@@ -52,7 +51,7 @@ exports.getAll = async (req, res) => {
     try {
         var data = await repository.getAll();
         res.status(200).send({
-            message: "promoções:",
+            message: "Cupons:",
             data
         });
     } catch (error) {
@@ -68,7 +67,7 @@ exports.put = async (req, res) => {
         const id = req.params.altid;
         var data = await repository.put(id, req.body);
         res.status(200).send({
-            message: "Promoção atualizada com sucesso",
+            message: "Cupom atualizado com sucesso",
             dados: data
         });
     } catch (error) {
@@ -83,7 +82,7 @@ exports.delete = async (req, res) => {
         const id = req.params.delid;
         await repository.delete(id);
         res.status(200).send({
-            message: "promoção removida"
+            message: "cupom removido"
         });
     } catch (error) {
         res.status(500).send({

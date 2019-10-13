@@ -29,6 +29,7 @@ db.sequelize = sequelize;
  db.segmento = require ('../app/model/segmento.model')(sequelize, Sequelize);
  db.promocao = require ('../app/model/promocao.model')(sequelize, Sequelize);
  db.cliente = require ('../app/model/cliente.model')(sequelize,Sequelize);
+ db.cupom = require ('../app/model/cupom.model')(sequelize,Sequelize);
 
 
 module.exports = db;

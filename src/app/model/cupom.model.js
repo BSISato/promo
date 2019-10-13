@@ -1,38 +1,35 @@
 module.exports = (sequelize, Sequelize) => {
-    const Promocao = sequelize.define('promocao', {
-        idPromocao: {
+    const Cupom = sequelize.define('cupom', {
+        idCupom: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
         },
-        segmento: {
-            type: Sequelize.STRING
-        },
-        descricao: {
-            type: Sequelize.STRING
+        codigoCupom: {
+            type: Sequelize.INTEGER
         },
         qtde: {
             type: Sequelize.INTEGER
         },
-        valorReal: {
-            type: Sequelize.FLOAT
-        },
-        valorPromocao: {
-            type: Sequelize.FLOAT
-        },
-        validade: {
+        data: {
             type: Sequelize.DATE
+        },
+        utilizado: {
+            type: Sequelize.INTEGER
         },
         idEmpresa: {
             type: Sequelize.INTEGER
         },
-        situacao: {
+        idCliente: {
             type: Sequelize.INTEGER
-        }
+        },
+        idPromocao: {
+            type: Sequelize.INTEGER
+        }        
     },{
         freezeTableName: true //cria a tabela no singular
     });
 
-    return Promocao;
+    return Cupom;
 }
