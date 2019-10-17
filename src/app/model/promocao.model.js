@@ -29,6 +29,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         situacao: {
             type: Sequelize.INTEGER
+        },
+        nomePromocao : {
+            type: Sequelize.STRING
         }
     },{
         freezeTableName: true //cria a tabela no singular

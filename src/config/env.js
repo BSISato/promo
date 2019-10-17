@@ -1,8 +1,11 @@
 const env = {
   database: 'dbpromo',
+ // username: 'root',
+ // password: '',
+ // host: '127.0.0.1',
   username: 'sato',
   password: 'dbpromo123',
-  host: 'dbpromo.ch9cls2xwuvz.us-east-2.rds.amazonaws.com',
+  host: 'dbpromo.ctvttuahzevy.sa-east-1.rds.amazonaws.com',
   dialect: 'mysql',
   pool: {
 	  max: 5,

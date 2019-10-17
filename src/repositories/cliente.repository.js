@@ -1,5 +1,6 @@
 const db = require('../config/db.config');
 const Cliente = db.cliente;
+const Empresa = db.empresa;
 
 
 // Post Cliente
@@ -18,7 +19,7 @@ exports.getAll = async () => {
     return res;
 }
 //Put
-/*
+
 exports.put = async (id, data) => {
     await Cliente.Update(id,
         {
@@ -33,7 +34,7 @@ exports.put = async (id, data) => {
                 idEmpresa: data.idEmpresa
             }
         });
-}*/
+}
 exports.put = async (id, data) => {
 
     await Cliente.update({

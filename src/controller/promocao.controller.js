@@ -12,7 +12,8 @@ exports.create = async (req, res) => {
             valorPromocao : req.body.valorPromocao,
             validade: req.body.validade,
             idEmpresa: req.body.idEmpresa,
-            situacao : req.body.situacao
+            situacao : req.body.situacao,
+            nomePromocao : req.body.nomePromocao
         });
         res.status(201).send({
             message: "Promoção cadastrada com sucesso"
@@ -67,9 +68,11 @@ exports.put = async (req, res) => {
     try{
         const id = req.params.altid;
         var data = await repository.put(id, req.body);
+        console.log(data);
         res.status(200).send({
             message: "Promoção atualizada com sucesso",
-            dados: data
+            data
+            
         });
     } catch (error) {
         res.status(500).send({

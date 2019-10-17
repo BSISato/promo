@@ -4,14 +4,15 @@ var repository = require('../repositories/cupom.repository');
 //Post Cupom
 exports.create = async (req, res) => {
     try {
+    
         await repository.create({
             codigoCupom: req.body.codigoCupom,
             qtde : req.body.qtde,
             data : req.body.data,
             utilizado : req.body.utilizado,
-            idEmpresa: req.body.idEmpresa,
-            idCliente: req.body.idCliente,
-            idPromocao: req.body.idPromocao
+            empresaIdEmpresa: req.body.empresaIdEmpresa,
+            clienteIdCliente: req.body.clienteIdCliente,
+            promocaoIdPromocao: req.body.promocaoIdPromocao
         });
         res.status(201).send({
             message: "Cupom cadastrado com sucesso"

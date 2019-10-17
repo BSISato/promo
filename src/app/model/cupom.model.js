@@ -18,18 +18,23 @@ module.exports = (sequelize, Sequelize) => {
         utilizado: {
             type: Sequelize.INTEGER
         },
-        idEmpresa: {
+        empresaIdEmpresa: {
+            type: Sequelize.INTEGER,
+        },
+        clienteIdCliente: {
             type: Sequelize.INTEGER
         },
-        idCliente: {
-            type: Sequelize.INTEGER
-        },
-        idPromocao: {
+        promocaoIdPromocao: {
             type: Sequelize.INTEGER
         }        
     },{
         freezeTableName: true //cria a tabela no singular
+    
     });
+    
+  //  Cupom.associate = function(model) {
+   //     Cupom.belongsTo(model.Empresa, {foreignKey: 'idEmpresa', as: 'empresa'})
+    //  };
 
     return Cupom;
 }

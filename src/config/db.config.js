@@ -31,5 +31,9 @@ db.sequelize = sequelize;
  db.cliente = require ('../app/model/cliente.model')(sequelize,Sequelize);
  db.cupom = require ('../app/model/cupom.model')(sequelize,Sequelize);
 
-
+ //db.empresa.hasMany(db.cupom);
+ db.cupom.belongsTo(db.empresa);
+ db.cupom.belongsTo(db.cliente);
+ db.cupom.belongsTo(db.promocao);
+ 
 module.exports = db;

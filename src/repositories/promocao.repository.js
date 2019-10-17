@@ -28,10 +28,12 @@ exports.put = async (id, data) => {
             valorPromocao : data.valorPromocao,
             validade: data.validade,
             idEmpresa: data.idEmpresa,
-            situacao : data.situacao
+            situacao : data.situacao,
+            nomePromocao : data.nomePromocao
     }, {
         where: { idPromocao: id }
     });
+    return data;
 }
 //Delete
 exports.delete = async (id) => {

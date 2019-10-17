@@ -28,11 +28,12 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         idEmpresa: {
-            type: Sequelize.INTEGER
-        }
+            type: Sequelize.INTEGER,
+        },
     },{
         freezeTableName: true //cria a tabela no singular
     });
+    
 
     return Cliente;
 }

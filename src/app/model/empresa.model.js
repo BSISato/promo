@@ -24,6 +24,9 @@ module.exports = (sequelize, Sequelize) => {
     },{
         freezeTableName: true //cria a tabela no singular
     });
+    //Empresa.associate = function(models) {
+     //   Cupom.hasMany(models.Cupom, { as:'cupomGerado'}) 
+    //};
 
     return Empresa;
 }
