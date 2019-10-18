@@ -4,8 +4,8 @@ module.exports = function (app) {
 
     // Cadastro PROMOÇÃO
     app.post('/api/cupom', controller.create);
-    //Get ID
-    app.get('/api/cupom/:cupomid',controller.getById);
+    //Get codigoCupom
+    app.get('/api/cupom/:codigoCupom',controller.getCodigoCupom);
     //Get All
     app.get('/api/cupom',controller.getAll);
     //Put

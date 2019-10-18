@@ -4,12 +4,16 @@ var repository = require('../repositories/cupom.repository');
 //Post Cupom
 exports.create = async (req, res) => {
     try {
-    
+        do {
+            var codigo = Math.random().toString(36).slice(-10);
+            var data = await repository.verificaCodigo(codigo);
+        } while (data != null);
+
         await repository.create({
-            codigoCupom: req.body.codigoCupom,
-            qtde : req.body.qtde,
-            data : req.body.data,
-            utilizado : req.body.utilizado,
+            codigoCupom: codigo,
+            qtde: req.body.qtde,
+            data: req.body.data,
+            utilizado: req.body.utilizado,
             empresaIdEmpresa: req.body.empresaIdEmpresa,
             clienteIdCliente: req.body.clienteIdCliente,
             promocaoIdPromocao: req.body.promocaoIdPromocao
@@ -17,24 +21,24 @@ exports.create = async (req, res) => {
         res.status(201).send({
             message: "Cupom cadastrado com sucesso"
         });
-    }catch(e) {
+    } catch (e) {
         console.log(e);
         res.status(500).send({
-            message:"Falha ao cadastrar promoção"
+            message: "Falha ao cadastrar promoção"
         })
     }
 }
-//Get ById
-exports.getById = async (req, res) => {
-    var id = req.params.cupomid;
+//Valida Cupom
+exports.getCodigoCupom = async (req, res) => {
+    var id = req.params.codigoCupom;
 
     try {
-        var data = await repository.getById(id);
+        var data = await repository.getCodigoCupom(id);
         if (!data) {
             res.status(200).send({
                 message: "Cupom inexistente",
             });
-        }else{
+        } else {
             res.status(200).send({
                 message: "Cupom",
                 data
@@ -64,7 +68,7 @@ exports.getAll = async (req, res) => {
 }
 //Put
 exports.put = async (req, res) => {
-    try{
+    try {
         const id = req.params.altid;
         var data = await repository.put(id, req.body);
         res.status(200).send({

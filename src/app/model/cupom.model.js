@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         },
         codigoCupom: {
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING
         },
         qtde: {
             type: Sequelize.INTEGER

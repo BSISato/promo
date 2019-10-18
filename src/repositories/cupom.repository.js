@@ -7,27 +7,36 @@ const Promocao = db.promocao;
 
 // Post Cupom
 exports.create = async (dados) => {
-    
+
     Cupom.create(dados)
 }
-//Get By ID
-exports.getById = async (id) => {
+//procura codigo
+exports.verificaCodigo = async (codigo) => {
     const res = await Cupom.findOne({
         where: {
-            idCupom:id
+            codigoCupom: codigo,
+        }
+    });
+    return res;
+}
+//Get codigoCupom
+exports.getCodigoCupom = async (codigo) => {
+    const res = await Cupom.findOne({
+        where: {
+            codigoCupom: codigo
         },
-        attributes:['idCupom','codigoCupom','qtde','utilizado'],
+        attributes: ['idCupom', 'codigoCupom', 'qtde', 'utilizado'],
         include: [{
-            model:Empresa,
-            attributes:['idEmpresa','nomeFantasia']
+            model: Empresa,
+            attributes: ['idEmpresa', 'nomeFantasia']
         },
         {
-            model:Promocao,
-            attributes:['idPromocao','valorPromocao','validade','situacao','nomePromocao'],
+            model: Promocao,
+            attributes: ['idPromocao', 'valorPromocao', 'validade', 'situacao', 'nomePromocao'],
         },
         {
-            model:Cliente,
-            attributes:['idCliente','nome','telefone'],
+            model: Cliente,
+            attributes: ['idCliente', 'nome', 'telefone'],
         }]
     })
     return res;
@@ -35,18 +44,18 @@ exports.getById = async (id) => {
 //Get All
 exports.getAll = async () => {
     const res = await Cupom.findAll({
-        attributes:['idCupom','codigoCupom','qtde','utilizado'],
+        attributes: ['idCupom', 'codigoCupom', 'qtde', 'utilizado'],
         include: [{
-            model:Empresa,
-            attributes:['idEmpresa','nomeFantasia']
+            model: Empresa,
+            attributes: ['idEmpresa', 'nomeFantasia']
         },
         {
-            model:Promocao,
-            attributes:['idPromocao','valorPromocao','validade','situacao','nomePromocao'],
+            model: Promocao,
+            attributes: ['idPromocao', 'valorPromocao', 'validade', 'situacao', 'nomePromocao'],
         },
         {
-            model:Cliente,
-            attributes:['idCliente','nome','telefone'],
+            model: Cliente,
+            attributes: ['idCliente', 'nome', 'telefone'],
         }]
     });
     return res;
@@ -56,13 +65,13 @@ exports.put = async (id, data) => {
 
     await Cupom.update({
         segmento: data.segmento,
-            codigoCupom : data.codigoCupom,
-            qtde : data.qtde,
-            data : data.data,
-            utilizado : data.utilziado,
-            empresaIdEmpresa: data.empresaIdEmpresa,
-            clienteIdCliente: data.clienteIdCliente,
-            promocaoIdPromocao: data.promocaoIdPromocao
+        codigoCupom: data.codigoCupom,
+        qtde: data.qtde,
+        data: data.data,
+        utilizado: data.utilziado,
+        empresaIdEmpresa: data.empresaIdEmpresa,
+        clienteIdCliente: data.clienteIdCliente,
+        promocaoIdPromocao: data.promocaoIdPromocao
     }, {
         where: { idCupom: id }
     });
@@ -70,8 +79,8 @@ exports.put = async (id, data) => {
 //Delete
 exports.delete = async (id) => {
     await Cupom.destroy({
-        where:{
-            idCupom:id
+        where: {
+            idCupom: id
         }
     })
 }
