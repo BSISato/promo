@@ -9,7 +9,16 @@ exports.create = async (req, res) => {
             nomeFantasia: req.body.nomeFantasia,
             cnpj: req.body.cnpj,
             segmento: req.body.segmento,
-            responsavel: req.body.responsavel
+            responsavel: req.body.responsavel,
+            email: req.body.email,
+            senha: req.body.senha,
+            endereco: req.body.endereco,
+            numero: req.body.numero,
+            cidade:req.body.cidade,
+            bairro: req.body.bairro,
+            cep: req.body.cep,
+            sobreEmpresa: req.body.sobreEmpresa
+
         });
         res.status(201).send({
             message: "Empresa cadastrada com sucesso"

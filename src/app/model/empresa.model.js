@@ -20,7 +20,32 @@ module.exports = (sequelize, Sequelize) => {
         },
         responsavel: {
             type: Sequelize.STRING
+        },
+        email: {
+            type: Sequelize.STRING
+        },
+        senha: {
+            type: Sequelize.STRING
+        },
+        endereco: {
+            type: Sequelize.STRING
+        },
+        numero: {
+            type: Sequelize.STRING
+        },
+        cidade: {
+            type: Sequelize.STRING
+        },
+        bairro: {
+            type: Sequelize.STRING
+        },
+        cep: {
+            type: Sequelize.INTEGER
+        },
+        sobreEmpresa: {
+            type: Sequelize.STRING
         }
+
     },{
         freezeTableName: true //cria a tabela no singular
     });

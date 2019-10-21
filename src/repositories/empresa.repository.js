@@ -27,7 +27,15 @@ exports.put = async (id, data) => {
         nomeFantasia: data.nomeFantasia,
         cnpj: data.cnpj,
         segmento: data.segmento,
-        responsavel: data.responsavel
+        responsavel: data.responsavel,
+        email: data.email,
+        senha: data.senha,
+        endereco: data.endereco,
+        numero: data.numero,
+        cidade: data.cidade,
+        bairro: data.bairro,
+        cep: data.cep,
+        sobreEmpresa: data.sobreEmpresa
     }, {
         where: { idEmpresa: id }
     });
