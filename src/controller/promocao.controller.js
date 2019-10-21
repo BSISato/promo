@@ -13,7 +13,8 @@ exports.create = async (req, res) => {
             validade: req.body.validade,
             idEmpresa: req.body.idEmpresa,
             situacao : req.body.situacao,
-            nomePromocao : req.body.nomePromocao
+            nomePromocao : req.body.nomePromocao,
+            imagem: req.body.imagem
         });
         res.status(201).send({
             message: "Promoção cadastrada com sucesso"

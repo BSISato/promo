@@ -29,7 +29,8 @@ exports.put = async (id, data) => {
             validade: data.validade,
             idEmpresa: data.idEmpresa,
             situacao : data.situacao,
-            nomePromocao : data.nomePromocao
+            nomePromocao : data.nomePromocao,
+            imagem : data.imagem
     }, {
         where: { idPromocao: id }
     });

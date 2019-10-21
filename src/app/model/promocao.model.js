@@ -32,6 +32,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         nomePromocao : {
             type: Sequelize.STRING
+        },
+        imagem: {
+            type: Sequelize.BLOB('long')
         }
     },{
         freezeTableName: true //cria a tabela no singular
