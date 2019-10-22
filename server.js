@@ -6,8 +6,8 @@ var cors = require('cors');
 app.use(cors());
 
 //configuração do server para usar o body-parser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.json({limit: '10mb'}));
 
 //const db = require('../src/app/config/db.config.js');
 const db = require('./src/config/db.config')
