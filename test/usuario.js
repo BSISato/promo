@@ -6,47 +6,71 @@ var should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Usuario',function(){
-  /*  var nome;
-    var senha;
-    before(function(next){
-            Usuario.remove({}, function(err){
-            next();
-        });
-    });*/
+describe('Usuario', function () {
 
-    it('Novo Usuario', function(done){
+    it('Novo Usuario', function (done) {
 
-        var novoUsuario = {
-            
-            nome: 'rogerio',
-            email:'aaa@gmail.com',
-            senha: 1000,
+        var novoUsuario = {
+
+            nome: 'Rogerio',
+            email: 'aaa@gmail.com',
+            senha: 123,
             nivel: 1,
-            idEmpresa:2  
-        };
+            idEmpresa: 2
+        };
 
-        chai.request(server)
-        .post('/api/usuario')
-        .send(novoUsuario)
-        .end(function(err, res){
+        chai.request(server)
+            .post('/api/usuario')
+            .send(novoUsuario)
+            .end(function (err, res) {
 
-            res.should.have.status(201);
-         //   res.body.should.have.property('usuario');
-          
-        done();
-        });
-        
-    });
-    it('Pegar Usuario pelo ID', function(done){
-        done();
-    });
-    it('Pegar Usuario pelo senha', function(done){
-        done();
-    });
-    it('Alterar Usuario', function(done){
-        done();
-    });
-    
+                res.should.have.status(201);
 
+                done();
+            });
+    });
+    it('Pegar Usuario pelo ID', function (done) {
+
+        chai.request(server)
+            .get('/api/usuario/1')
+            .end(function (err, res) {
+
+                res.should.have.status(200);
+
+                done();
+            });
+    });
+
+    it('Alterar Usuario', function (done) {
+
+        var usuarioAlterado = {
+
+            nome: 'rogeriiiiio',
+            email: 'aaa@gmail.com',
+            senha: 1000,
+            nivel: 1,
+             idEmpresa: 2
+        };
+        chai.request(server)
+            .put('/api/usuario/altera/1')
+            .send(usuarioAlterado)
+            .end(function (err, res) {
+
+                res.should.have.status(200);
+                
+                done();
+            });
+    });
+    it('Deleta Usuario', function (done) {
+
+        chai.request(server)
+            .delete('/api/usuario/delete/39')
+            .end(function (err, res) {
+
+                res.should.have.status(200);
+                
+
+                done();
+            });
+    });
 });

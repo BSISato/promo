@@ -15,3 +15,5 @@ yarn add mysql2
 yarn add express body-parser
 yarn add sequelize express
 yarn add -D sequelize-cli
+
+npm install jest-cli --save-dev

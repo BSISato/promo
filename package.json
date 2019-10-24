@@ -14,6 +14,7 @@
     "babel-preset-node8": "^1.2.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "jest-cli": "^24.9.0",
     "nodemon": "^1.19.4",
     "sequelize-cli": "^5.5.1"
   },

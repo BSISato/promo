@@ -5,7 +5,7 @@ var repository = require('../repositories/usuario.repository');
 exports.create = async (req, res) => {
     try {
         await repository.create({
-            nome : req.body.nome,
+            nome: req.body.nome,
             email: req.body.email,
             senha: req.body.senha,
             nivel: req.body.nivel,
@@ -14,10 +14,10 @@ exports.create = async (req, res) => {
         res.status(201).send({
             message: "Usuário cadastrado com sucesso"
         });
-    }catch(e) {
+    } catch (e) {
         console.log(e);
         res.status(500).send({
-            message:"Falha ao cadastrar USUÁRIO"
+            message: "Falha ao cadastrar USUÁRIO"
         })
     }
 }
@@ -31,7 +31,7 @@ exports.getById = async (req, res) => {
             res.status(200).send({
                 message: "Usuário inexistente",
             });
-        }else{
+        } else {
             res.status(200).send({
                 message: "Usuário",
                 data
@@ -61,7 +61,7 @@ exports.getAll = async (req, res) => {
 }
 //Put
 exports.put = async (req, res) => {
-    try{
+    try {
         const id = req.params.altid;
         var data = await repository.put(id, req.body);
         res.status(200).send({
@@ -78,10 +78,21 @@ exports.put = async (req, res) => {
 exports.delete = async (req, res) => {
     try {
         const id = req.params.delid;
-        await repository.delete(id);
-        res.status(200).send({
-            message: "usuario removido"
-        });
+        var data = await repository.getById(id);
+        if (data == null) {
+            res.status(200).send({
+
+                message: "ID inexistente"
+            });
+        } else {
+            await repository.delete(id);
+
+            res.status(200).send({
+
+                message: "usuario removido"
+            });
+        }
+
     } catch (error) {
         res.status(500).send({
             message: "Falha na requisição",

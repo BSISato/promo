@@ -30,6 +30,7 @@ exports.put = async (id, data) => {
         where: { idUsuario: id }
     });
 }
+
 //Delete
 exports.delete = async (id) => {
     await Usuario.destroy({
