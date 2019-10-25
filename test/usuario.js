@@ -8,12 +8,12 @@ chai.use(chaiHttp);
 
 describe('Usuario', function () {
 
-    it('Novo Usuario', function (done) {
+    it('Inserindo novo usuário', function (done) {
 
         var novoUsuario = {
 
             nome: 'Rogerio',
-            email: 'aaa@gmail.com',
+            email: 'aaaa@gmail.com',
             senha: 123,
             nivel: 1,
             idEmpresa: 2
@@ -29,6 +29,29 @@ describe('Usuario', function () {
                 done();
             });
     });
+
+    it('Teste de email repetido', function (done) {
+
+        var novoUsuario = {
+
+            nome: 'Rogerio',
+            email: 'aaa@gmail.com',
+            senha: 123,
+            nivel: 1,
+            idEmpresa: 2
+        };
+
+        chai.request(server)
+            .post('/api/usuario')
+            .send(novoUsuario)
+            .end(function (err, res) {
+
+                res.should.have.status(500);
+
+                done();
+            });
+    });
+
     it('Pegar Usuario pelo ID', function (done) {
 
         chai.request(server)

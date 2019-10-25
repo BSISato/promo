@@ -5,11 +5,13 @@ const Usuario = db.usuario;
 // Post Empresa
 exports.create = async (dados) => {
 
-    Usuario.create(dados)
+    const res = Usuario.create(dados);
+    return res;
 }
 //Get By ID
 exports.getById = async (id) => {
     const res = await Usuario.findByPk(id);
+    
     return res;
 }
 //Get All
@@ -33,11 +35,12 @@ exports.put = async (id, data) => {
 
 //Delete
 exports.delete = async (id) => {
-    await Usuario.destroy({
+    const res = await Usuario.destroy({
         where:{
             idUsuario:id
         }
     })
+    return res.status(500);
 }
 
 

@@ -7,18 +7,21 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         },
         nome: {
+            allowNull: false,
             type: Sequelize.STRING
         },
         email: {
             type: Sequelize.STRING
         },
         senha: {
-            type: Sequelize.STRING
+            allowNull: false,
+            type: Sequelize.UUID
         },
         nivel : {
             type: Sequelize.STRING
         },
         idEmpresa: {
+            allowNull: false,
             type: Sequelize.INTEGER
         }
     },{
