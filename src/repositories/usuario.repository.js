@@ -40,7 +40,7 @@ exports.delete = async (id) => {
             idUsuario:id
         }
     })
-    return res.status(500);
+    return res;
 }
 
 

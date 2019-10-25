@@ -1,24 +1,57 @@
 var chai = require('chai');
 var server = require('../server');
 var chaiHttp = require('chai-http');
-var Usuario = require('../src/app/model/usuario.model');
+//var Usuario = require('../src/app/model/usuario.model');
 var should = chai.should();
+const db = require('../src/config/db.config');
+var Usuario = db.usuario;
 
 chai.use(chaiHttp);
 
 describe('Usuario', function () {
+    
 
-    it('Inserindo novo usuário', function (done) {
-
+    before(function(next){
+        
+        Usuario.destroy({ truncate : true });
+            next();
+        
+    });
+    
+    
+    it('Inserindo usuário 1', function (done) {
+        
         var novoUsuario = {
 
             nome: 'Rogerio',
-            email: 'aaaa@gmail.com',
+            email: 'primeiro@gmail.com',
             senha: 123,
             nivel: 1,
             idEmpresa: 2
         };
+        
+        chai.request(server)
+            .post('/api/usuario')
+            .send(novoUsuario)
+            .end(function (err, res) {
 
+                res.should.have.status(201);
+
+                done();
+            });
+    });
+
+    it('Inserindo usuário 2', function (done) {
+        
+        var novoUsuario = {
+
+            nome: 'Jacaré',
+            email: 'segundo@gmail.com',
+            senha: 123,
+            nivel: 1,
+            idEmpresa: 2
+        };
+        
         chai.request(server)
             .post('/api/usuario')
             .send(novoUsuario)
@@ -35,7 +68,7 @@ describe('Usuario', function () {
         var novoUsuario = {
 
             nome: 'Rogerio',
-            email: 'aaa@gmail.com',
+            email: 'segundo@gmail.com',
             senha: 123,
             nivel: 1,
             idEmpresa: 2
@@ -55,7 +88,7 @@ describe('Usuario', function () {
     it('Pegar Usuario pelo ID', function (done) {
 
         chai.request(server)
-            .get('/api/usuario/1')
+            .get('/api/usuario/2')
             .end(function (err, res) {
 
                 res.should.have.status(200);
@@ -68,11 +101,8 @@ describe('Usuario', function () {
 
         var usuarioAlterado = {
 
-            nome: 'rogeriiiiio',
-            email: 'aaa@gmail.com',
-            senha: 1000,
-            nivel: 1,
-             idEmpresa: 2
+            nome: 'Sato',
+           
         };
         chai.request(server)
             .put('/api/usuario/altera/1')
@@ -84,10 +114,11 @@ describe('Usuario', function () {
                 done();
             });
     });
+    
     it('Deleta Usuario', function (done) {
 
         chai.request(server)
-            .delete('/api/usuario/delete/39')
+            .delete('/api/usuario/delete/2')
             .end(function (err, res) {
 
                 res.should.have.status(200);
@@ -95,5 +126,5 @@ describe('Usuario', function () {
 
                 done();
             });
-    });
+    }); 
 });
