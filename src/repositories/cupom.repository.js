@@ -68,7 +68,7 @@ exports.put = async (id, data) => {
         codigoCupom: data.codigoCupom,
         qtde: data.qtde,
         data: data.data,
-        utilizado: data.utilziado,
+        utilizado: data.utilizado,
         empresaIdEmpresa: data.empresaIdEmpresa,
         clienteIdCliente: data.clienteIdCliente,
         promocaoIdPromocao: data.promocaoIdPromocao
