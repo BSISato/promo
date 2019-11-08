@@ -1,5 +1,32 @@
 
 var repository = require('../repositories/usuario.repository');
+const authService = require('../services/auth-service')
+
+//Auth
+exports.autenticacao = async (req, res) => {
+    
+        var verifica = await repository.verificaUser({
+
+            email:req.body.email,
+            senha:req.body.senha
+            
+        });
+        if(verifica != null){
+            var email = req.body.email;
+            const token = authService.generateToken(
+                email
+             );
+            res.status(200).send({ auth: true, token:token });
+        }else{
+            res.status(400).send('Login inválido!');
+        }
+  
+    }
+
+
+
+
+
 
 //Post Usuario
 exports.create = async (req, res) => {

@@ -1,6 +1,20 @@
 const db = require('../config/db.config');
 const Usuario = db.usuario;
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
+exports.verificaUser = async (esse) => {
+
+    const res = await Usuario.findOne({
+        where: {
+            email: esse.email,
+            [Op.and]:{
+                senha: esse.senha,
+            },
+        }
+    });
+    return res;
+}
 
 // Post Empresa
 exports.create = async (dados) => {

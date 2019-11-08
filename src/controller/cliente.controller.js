@@ -79,7 +79,7 @@ exports.put = async (req, res) => {
     }
 }
 exports.delete = async (req, res) => {
-    try {
+ /*   try {
         const id = req.params.delid;
         await repository.delete(id);
         res.status(200).send({
@@ -90,6 +90,6 @@ exports.delete = async (req, res) => {
             message: "Falha na requisição",
             erro: error
         });
-    }
+    }*/
 }
 
